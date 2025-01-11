@@ -1,0 +1,1 @@
+# Debian-skrypt-aktualizacji-i-konserwacji
