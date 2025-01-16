@@ -90,27 +90,6 @@ clean_cache() {
     fi
 }
 
-# Funkcja wycofywania ostatniej aktualizacji
-undo_last_update() {
-    log "Wycofywanie ostatniej aktualizacji..."
-    
-    # Pobieranie ID ostatniej aktualizacji
-    LAST_ID=$(nala history list --reverse | grep -m 1 'upgrade' | awk '{print $1}')
-    
-    if [[ -z "$LAST_ID" ]]; then
-        log "Nie znaleziono żadnej aktualizacji do wycofania."
-        return 1
-    fi
-
-    # Wycofywanie ostatniej aktualizacji
-    if nala history undo "$LAST_ID" 2>&1 | tee -a "$LOG_FILE"; then
-        log "Pomyślnie wycofano ostatnią aktualizację (ID: $LAST_ID)."
-    else
-        log "Błąd podczas wycofywania ostatniej aktualizacji (ID: $LAST_ID)."
-        return 1
-    fi
-}
-
 # Wyświetlanie pomocy
 show_help() {
     echo "Użycie: $0 [opcje]"
@@ -119,7 +98,6 @@ show_help() {
     echo "  --maintain-logs       Konserwacja dziennika systemowego"
     echo "  --maintain-flatpak    Konserwacja aplikacji Flatpak"
     echo "  --clean-cache         Czyszczenie pamięci podręcznej"
-    echo "  --undo                Wycofanie ostatniej aktualizacji"
     echo "  --all                 Wykonanie wszystkich czynności"
     echo "  --help                Wyświetlenie tej pomocy"
 }
@@ -143,9 +121,6 @@ for arg in "$@"; do
             ;;
         --clean-cache)
             clean_cache
-            ;;
-        --undo)
-            undo_last_update
             ;;
         --all)
             update_system
