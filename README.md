@@ -10,3 +10,8 @@ Usuwa pliki log (500 MB i starszych niż 3 tygodnie).
 Skrypt przed aktualizacją tworzy kopię Timeshift -em.
 Poza tym sprawdza ilość miejsca na dysku, sprawdza, czy jest zainstalowany Timeshift, Flatpak, Synaptic, Jeżeli nie to, pyta, czy chcesz go zainstalować.
 Zapraszam wszystkich do poprawiania i dodawania innych pożytecznych funkcji, w celu stworzenia uniwersalnego kompleksowego skryptu.
+Skrypt kopiujemy do katalogu głównego urzytkownika.
+Nadajemy uprawniena do uruchomienia
+chmod +x aktualizacja.sh 
+uruchamiamy poleceniem
+sudo ./aktualizacja.sh 
